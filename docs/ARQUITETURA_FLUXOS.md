@@ -1,28 +1,23 @@
-# Arquitetura e fluxos — central-de-eventos-planilhas
+# Arquitetura e fluxos — Central de Eventos
 
-Estado: **inventário inicial, arquitetura não confirmada**. O README não estava acessível nesta consulta ou não forneceu base suficiente. Não inferir arquitetura a partir do nome do repositório.
-Fonte: https://github.com/duduxweb/central-de-eventos-planilhas
+Documentação 1.0 · 13/11/2026 · [HTML interativo](fluxos.html)
 
-## Etapa 1 — Levantamento
-- Repositório identificado no GitHub conectado.
-- Hipótese/contexto a conferir: Componentes, finalidade, dependências e dados ainda não comprovados por documentação técnica.
-- Pendente: ler árvore do código, documentação técnica, workflows, configuração de execução e eventuais arquivos de projeto no Drive.
+## Etapa 1 · Inventário
 
-## Etapa 2 — Fluxos
-- **Entrada:** não confirmada.
-- **Processamento:** não confirmado.
-- **Saída:** não confirmada.
-- **Integrações e fontes da verdade:** não confirmadas.
-- **Deploy e execução real:** não verificados.
+Base GitHub `99e89e026423ca86819e05d382383a64b8af125e`.
 
-## Índice e verificação
-- [x] Repositório localizado
-- [ ] Arquitetura validada em fonte técnica
-- [ ] Fluxo ponta a ponta documentado com evidências
-- [ ] Estado de deploy/execução conferido
+| Componente | Entrada e ação | Fonte |
+| --- | --- | --- |
+| Planilha | Linhas de Eventos e calendário escolhido. O operador usa os comandos da planilha. A agenda é resolvida por linha. | [Utils.gs](https://github.com/duduxweb/central-de-eventos-planilhas/blob/99e89e026423ca86819e05d382383a64b8af125e/Utils.gs) |
+| Apps Script | Valida a seleção e resolve a agenda. O onEdit só registra que a sincronização automática está desativada. O código contém variantes de sincronização por seleção. | [selecionado.gs](https://github.com/duduxweb/central-de-eventos-planilhas/blob/99e89e026423ca86819e05d382383a64b8af125e/selecionado.gs) |
+| Calendar | Cria ou atualiza eventos pelo comando autorizado. A permissão da conta executora afeta a operação. IDs e status permitem acompanhar a associação com as linhas. | [AgendasTools.gs](https://github.com/duduxweb/central-de-eventos-planilhas/blob/99e89e026423ca86819e05d382383a64b8af125e/AgendasTools.gs) |
 
-## Etapa 3 — Reservada
-Sem otimização ou mudanças de código neste momento.
+## Etapa 2 · Evidências e pendências
+
+Funções Apps Script e gatilho onEdit conferidos no GitHub. Checkout local identificado anteriormente, sem alterar arquivos ou calendários.
+
+Work deve conferir o contêiner Apps Script, a versão instalada, os gatilhos e as permissões de calendário. Sem criar, mover ou excluir eventos de teste.
 
 ## Histórico
-- 2026-11-13: inventário preliminar; lacunas explicitadas.
+
+- 1.0 · Primeiro mapa interativo. Atualize o índice e o HTML na mesma revisão e confira a cópia do Drive.

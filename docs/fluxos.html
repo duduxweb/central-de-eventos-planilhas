@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Central de Eventos · Fluxos</title><style>
+:root{--bg:#0f1715;--sf:#17211e;--fg:#e6efeb;--mu:#9db0a8;--ln:#263430;--soft:#1e2b27;
+  --planilha:#2e9e5b;--painel:#3fc1a8;--servidor:#6f8fe8;--edu:#f0a43a;--ia:#b48cf0;--fora:#7d8a86;--red:#ff8a7a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Figtree,system-ui,sans-serif;padding:16px max(14px,env(safe-area-inset-left))}
+main{max-width:1100px;margin:0 auto}
+h1{font-size:24px;margin:4px 0 2px}h2{font-size:19px;margin:28px 0 8px;padding-top:8px;border-top:1px solid var(--ln)}h3{font-size:15px;margin:14px 0 6px}
+a{color:var(--painel)}.mu{color:var(--mu)}.sub{color:var(--mu);margin:0 0 12px}
+.leg{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ln);border-radius:999px;padding:3px 10px;font-size:12.5px;background:var(--sf)}
+.tag i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.toc{columns:2 260px;gap:24px;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 18px;margin:12px 0}
+.toc a{display:block;padding:3px 0;text-decoration:none}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:8px 0}
+.st{position:relative;background:var(--sf);border:1px solid var(--ln);border-left:5px solid var(--c);border-radius:10px;padding:8px 10px;width:200px;margin:6px 26px 6px 0;font-size:13.5px}
+.st b{display:block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
+.st:not(:last-child)::after{content:'➜';position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:var(--mu);font-size:16px}
+.st.warn{box-shadow:0 0 0 2px var(--red) inset}
+.ramo{margin:2px 0 6px 14px;padding-left:12px;border-left:2px dashed var(--ln);font-size:13.5px;color:var(--mu)}
+.at{background:#3a1c19;border:1px solid #6b2b24;border-radius:10px;padding:8px 12px;margin:8px 0;font-size:13.5px}
+.at b{color:var(--red)}
+.ok{background:#153325;border:1px solid #23573b;border-radius:10px;padding:8px 12px;margin:8px 0;font-size:13.5px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--sf);border:1px solid var(--ln);border-radius:12px;overflow:hidden}
+th,td{text-align:left;vertical-align:top;padding:7px 9px;border-bottom:1px solid var(--ln)}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mu)}
+.s{white-space:nowrap;font-weight:600}.s.v{color:var(--planilha)}.s.c{color:var(--ia)}.s.p{color:var(--edu)}.s.x{color:var(--fora)}
+.tw{overflow-x:auto;border-radius:12px}
+.versao{display:inline-block;background:var(--sf);border:1px solid var(--ln);border-radius:999px;padding:4px 12px;font-size:13px;margin:0 0 6px}
+.etapas{display:flex;flex-wrap:wrap;gap:0;margin:8px 0}
+.etapas span{padding:7px 14px;border:1px solid var(--ln);background:var(--sf);font-size:13.5px;font-weight:600;position:relative;margin-right:18px;border-radius:999px}
+.etapas span:not(:last-child)::after{content:'➜';position:absolute;right:-16px;color:var(--mu)}
+@media (max-width:620px){.st{width:100%;margin-right:0;margin-bottom:22px}.st:not(:last-child)::after{content:'⬇';right:auto;left:50%;top:auto;bottom:-22px;transform:translateX(-50%)}.toc{columns:1}}
+
+.st { overflow-wrap:anywhere }
+.st summary { cursor:pointer; display:block; border-radius:4px; min-height:28px }
+.st summary::-webkit-details-marker { display:none }
+.st summary b::before { content:"▸ "; }
+.st[open] summary b::before { content:"▾ "; }
+.st summary:focus-visible { outline:2px solid var(--painel); outline-offset:4px }
+.st p { margin:8px 0 0 }
+.st .evidencia { border-top:1px solid var(--ln); padding-top:6px; color:var(--mu) }
+.st:not(:last-child)::after { pointer-events:none }
+</style></head><body><main>
+<h1>Central de Eventos</h1><p class="versao">Arquitetura e fluxos · v1.0 · 13/11/2026</p>
+<nav class="toc" aria-label="Índice"><a href="#fluxo">Fluxo</a><a href="#evidencias">Evidências</a><a href="#historico">Histórico</a></nav>
+<h2 id="fluxo">Fluxo de operação</h2><div class="flow">
+<details class="st" style="--c:var(--edu)"><summary><b>Planilha</b>Linhas de Eventos e calendário escolhido.</summary><p>O operador usa os comandos da planilha. A agenda é resolvida por linha.</p><p><a href="https://github.com/duduxweb/central-de-eventos-planilhas/blob/99e89e026423ca86819e05d382383a64b8af125e/Utils.gs">Código ou instruções</a></p></details>
+<details class="st" style="--c:var(--servidor)"><summary><b>Apps Script</b>Valida a seleção e resolve a agenda.</summary><p>O onEdit só registra que a sincronização automática está desativada. O código contém variantes de sincronização por seleção.</p><p><a href="https://github.com/duduxweb/central-de-eventos-planilhas/blob/99e89e026423ca86819e05d382383a64b8af125e/selecionado.gs">Código ou instruções</a></p></details>
+<details class="st" style="--c:var(--painel)"><summary><b>Calendar</b>Cria ou atualiza eventos pelo comando autorizado.</summary><p>A permissão da conta executora afeta a operação. IDs e status permitem acompanhar a associação com as linhas.</p><p><a href="https://github.com/duduxweb/central-de-eventos-planilhas/blob/99e89e026423ca86819e05d382383a64b8af125e/AgendasTools.gs">Código ou instruções</a></p></details>
+</div><h2 id="evidencias">Evidências</h2><div class="ok">Funções Apps Script e gatilho onEdit conferidos no GitHub. Checkout local identificado anteriormente, sem alterar arquivos ou calendários.</div><div class="at"><b>Pendente.</b> Work deve conferir o contêiner Apps Script, a versão instalada, os gatilhos e as permissões de calendário. Sem criar, mover ou excluir eventos de teste.</div>
+<h2 id="historico">Histórico</h2><p>1.0 · 13/11/2026. Mapa interativo e inventário da <a href="https://github.com/duduxweb/central-de-eventos-planilhas/tree/99e89e026423ca86819e05d382383a64b8af125e">revisão auditada</a>.</p></main></body></html>
